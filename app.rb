@@ -6,11 +6,13 @@ class App < Sinatra::Base
     erb :index
   end
 
-  post '/piglatinize' do
-    pig = PigLatinizer.new
-    @pig_latin = pig.to_pig_latin(params[:user_phrase])
+  get '/new' do
+    erb :create_puppy
+  end
 
-    erb :results
+  post '/puppy' do
+    @puppy = Puppy.new(params[:name], params[:breed], params[:age])
+    erb :display_puppy
   end
 
 end
